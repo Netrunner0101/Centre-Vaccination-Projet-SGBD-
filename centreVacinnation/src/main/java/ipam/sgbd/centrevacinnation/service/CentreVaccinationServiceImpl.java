@@ -1,5 +1,5 @@
 package ipam.sgbd.centrevacinnation.service;
 
-public class CentreVaccinationServiceImpl {
+public class CentreVaccinationServiceImpl implements CentreVaccinationService {
 
 }

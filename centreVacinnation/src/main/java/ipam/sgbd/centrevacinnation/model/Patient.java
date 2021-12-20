@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -19,7 +21,18 @@ import lombok.Data;
 public class Patient {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long idPatient ;
+	@Column(name="idPatient")
+	private long idPatient;
+	
+	//relation many to one SiegeCentre
+	@ManyToOne
+	@JoinColumn(name="idSiege")
+	private SiegeCentre siege;
+	
+	//relation many to one CentreVaccination
+	@ManyToOne
+	@JoinColumn(name="idCentre")
+	private CentreVaccination centreVaccination;
 	
 	@Column(name="nom")
 	private String nom ;
@@ -31,7 +44,7 @@ public class Patient {
 	private long numeroNational;
 	
 	@Column(name="dateNaissance")
-	@JsonFormat(pattern="dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 
 	@Column(name="adresse")

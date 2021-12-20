@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ipam.sgbd.centrevacinnation.model.Patient;
-import ipam.sgbd.centrevacinnation.service.PatientService;
 import ipam.sgbd.centrevacinnation.service.PatientServiceImpl;
 
 
@@ -21,8 +20,7 @@ public class PatientController {
 
 	@Autowired
 	PatientServiceImpl patientServiceImpl;
-	@Autowired
-	PatientService patientService;
+
 	
 	//rechercher la liste de tous les patients 
 	@GetMapping("/patients")
