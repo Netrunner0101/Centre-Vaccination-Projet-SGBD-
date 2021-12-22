@@ -8,24 +8,34 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ipam.sgbd.centrevacinnation.model.Patient;
+import ipam.sgbd.centrevacinnation.model.Reservation;
+import ipam.sgbd.centrevacinnation.repository.PatientRepository;
+import ipam.sgbd.centrevacinnation.repository.ReservationRepository;
 import ipam.sgbd.centrevacinnation.service.PatientServiceImpl;
 
 
 @RestController
 public class PatientController {
 
-	@Autowired
-	PatientServiceImpl patientServiceImpl;
-
+	@Autowired PatientServiceImpl patientServiceImpl;
+	@Autowired PatientRepository patientRepo;
+	@Autowired ReservationRepository reservationRepo;
 	
 	//rechercher la liste de tous les patients 
 	@GetMapping("/patients")
-	public List<Patient> getAllPatients() {
+	public Iterable<Patient> getAllPatients() {
 		return (List<Patient>) patientServiceImpl.getAllPatients();
+	}
+	
+	//Voir tous les reservation de tous les patients
+	@GetMapping("/patients/reservation/")
+	public List<Reservation> getAllReservation(){
+		return patientServiceImpl.allReservation();
 	}
 	
 	//rechercher un patient avec son id
@@ -51,5 +61,19 @@ public class PatientController {
 		}
 	}
 	
+	// Mettre a jour un patient
+	@PutMapping("/patient/update/{id}")
+	Patient patient(@RequestBody Patient patient, @PathVariable Long idPatient) {
+		Patient UpdatePatient = patientRepo.findById(idPatient).get();
+		UpdatePatient.setNom(patient.getNom());
+		UpdatePatient.setPrenom(patient.getPrenom());
+		UpdatePatient.setAge(patient.getAge());
+		UpdatePatient.setAdresse(patient.getAdresse());
+		UpdatePatient.setDateNaissance(patient.getDateNaissance());
+		UpdatePatient.setEmail(patient.getEmail());
+		UpdatePatient.setNumeroNational(patient.getNumeroNational());
+		UpdatePatient.setSiege(patient.getSiege());
+		return patientRepo.save(UpdatePatient);
+	}
 	
 }

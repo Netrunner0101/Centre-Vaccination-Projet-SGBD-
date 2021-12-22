@@ -8,21 +8,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ipam.sgbd.centrevacinnation.model.Patient;
+import ipam.sgbd.centrevacinnation.model.Reservation;
 import ipam.sgbd.centrevacinnation.repository.PatientRepository;
-
+import ipam.sgbd.centrevacinnation.repository.ReservationRepository;
 
 
 @Service
 public class PatientServiceImpl implements PatientService  {
 	
-	@Autowired
-	private PatientRepository patientRepository;
+	@Autowired PatientRepository patientRepository;
+	@Autowired ReservationRepository reservationRepo;
 	
 	// Retourner tout les patients
 
 	public List<Patient> getAllPatients() {
-		// TODO Auto-generated method stub
 		return (List<Patient>) patientRepository.findAll();
+	}
+	
+	// Tous les reservations du client
+	@Override
+	public List<Reservation> allReservation() {
+		return (List<Reservation>) reservationRepo.findAll();
 	}
 	
 	// Retourner patient en fonction de son Id
@@ -40,4 +46,9 @@ public class PatientServiceImpl implements PatientService  {
 	public Patient addPatient(Patient patient) {
 		return  patientRepository.save(patient);
 	}
+
+	
+
+	
+	
 }

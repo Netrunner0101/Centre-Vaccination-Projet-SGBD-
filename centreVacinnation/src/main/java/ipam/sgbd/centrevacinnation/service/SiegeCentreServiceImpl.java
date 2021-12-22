@@ -33,5 +33,28 @@ public class SiegeCentreServiceImpl implements SiegeCentreService {
 	public List<CentreVaccination> allCentres(){
 		return (List<CentreVaccination>) centreVaccinationRepo.findAll();
 	}
+
+	public Patient addPatient(Patient patient) {
+		return patientRepo.save(patient);
+	}
+
+	@Override
+	public CentreVaccination addCentre(CentreVaccination centreVaccination) {
+		return centreVaccinationRepo.save(centreVaccination);
+	}
+
+	@Override
+	public void deletePatient(Long IdPatient) {
+		patientRepo.deleteById(IdPatient);
+		
+	}
+
+	@Override
+	public void deleteCentre(Long IdCentre) {
+		centreVaccinationRepo.deleteById(IdCentre);
+		
+	}
+
+
 	
 }

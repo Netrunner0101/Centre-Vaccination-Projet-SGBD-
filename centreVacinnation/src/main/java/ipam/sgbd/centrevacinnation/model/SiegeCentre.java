@@ -12,11 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Data;
 
 @Entity
 @Table(name="siegeCentre")
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "idSiege")
 public class SiegeCentre {
 	
 	@Id
