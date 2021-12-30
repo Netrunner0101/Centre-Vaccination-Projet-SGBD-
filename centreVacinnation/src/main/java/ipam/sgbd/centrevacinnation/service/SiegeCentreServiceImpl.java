@@ -26,34 +26,39 @@ public class SiegeCentreServiceImpl implements SiegeCentreService {
 		return siegeCentreRepo.findAll();
 	}
 	
+	// 1 Tous les patients 
 	public List<Patient> allPatients(){
 		return (List<Patient>) patientRepo.findAll() ;
 	}
 	
+	// 2 Tous les centres
 	public List<CentreVaccination> allCentres(){
 		return (List<CentreVaccination>) centreVaccinationRepo.findAll();
 	}
-
+	
+	// 3 Creer un nouveau siege
+	public SiegeCentre siegeCreation(SiegeCentre siege) {
+		return siegeCentreRepo.save(siege);
+	}
+	
+	// 4 Update siege
+	public SiegeCentre siegeUpdate(SiegeCentre siege, long idSiege) {
+		SiegeCentre sUpdated = siegeCentreRepo.findById(idSiege).get();
+		sUpdated.setNom(siege.getNom());
+		sUpdated.setAdresse(siege.getAdresse());
+		return siegeCentreRepo.save(siege);
+	}
+	
+	// 5 Supprimer un siege
+	public void deleteSiege(long idSiege) {
+		siegeCentreRepo.deleteById(idSiege);
+	}
+	
 	public Patient addPatient(Patient patient) {
 		return patientRepo.save(patient);
 	}
 
-	@Override
-	public CentreVaccination addCentre(CentreVaccination centreVaccination) {
-		return centreVaccinationRepo.save(centreVaccination);
-	}
 
-	@Override
-	public void deletePatient(Long IdPatient) {
-		patientRepo.deleteById(IdPatient);
-		
-	}
-
-	@Override
-	public void deleteCentre(Long IdCentre) {
-		centreVaccinationRepo.deleteById(IdCentre);
-		
-	}
 
 
 	

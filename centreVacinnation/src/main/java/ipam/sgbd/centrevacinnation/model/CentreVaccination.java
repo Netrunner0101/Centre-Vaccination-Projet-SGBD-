@@ -34,6 +34,15 @@ public class CentreVaccination {
 	@JoinColumn(name="idSiege")
 	private SiegeCentre siegeCentre;
 	
+	@Column(name="nom")
+	private String nom;
+	
+	@Column(name="adresse")
+	private String adresse;
+	
+	@Column(name="email")
+	private String email;
+	
 	//Relation one to many avec Patient
 	@OneToMany(mappedBy="centreVaccination")
 	private List<Patient> patient;
@@ -54,16 +63,5 @@ public class CentreVaccination {
 	//Relation Many to Many (Personnel) avec table intermiédaire Horaire.
 	@OneToMany(mappedBy="centreHoraire")
 	private List<Horaire> personnelHoraire;
-	
-	@Column(name="nom")
-	private String nom;
-	
-	@Column(name="adresse")
-	private String adresse;
-	
-	@Column(name="email")
-	private String email;
-	
-	
 	
 }

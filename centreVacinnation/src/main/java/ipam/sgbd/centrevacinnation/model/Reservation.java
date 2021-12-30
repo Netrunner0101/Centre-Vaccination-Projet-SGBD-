@@ -1,5 +1,7 @@
 package ipam.sgbd.centrevacinnation.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,15 +11,28 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import lombok.Data;
 
 @Entity
 @Table(name="reservation")
+@Data
 public class Reservation {
 	
 	@Id
 	@Column(name="idReservation")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idReservation;
+	
+	@Column(name="DateReservation")
+	@Temporal(TemporalType.DATE)
+	private Date DateReservation;
+	
+	@Column(name="TimeReservation")
+	@Temporal(TemporalType.TIME)
+	private Date TimeReservation;
 
 	// Relation many to one avec Patient et Centre Vaccination
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -31,7 +46,5 @@ public class Reservation {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idVaccin")
 	private Vaccin vaccinReservation; 
-	
-	// Voir comment on met les dates et Temps dans la  DB ?
 	
 }

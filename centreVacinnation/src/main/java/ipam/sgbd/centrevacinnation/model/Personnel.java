@@ -26,16 +26,7 @@ public class Personnel {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idPersonnel;
-	
-	//Relation n to 1 Avec le centre
-	@ManyToOne
-	@JoinColumn(name="idCentre")
-	private CentreVaccination centre;
-	
-	//Relation Many to Many (Personnel) avec table intermiédaire Horaire.
-	@OneToMany(mappedBy="personnelHoraire")
-	private List<Horaire> centreHoraire;
-	
+
 	@Column(name="nom")
     private String nom;
     
@@ -48,5 +39,13 @@ public class Personnel {
 	@Column(name="email")
 	private String email;
 	
-    
+    //Relation n to 1 Avec le centre
+	@ManyToOne
+	@JoinColumn(name="idCentre")
+	private CentreVaccination centre;
+	
+	//Relation Many to Many (Personnel) avec table intermiédaire Horaire.
+	@OneToMany(mappedBy="personnelHoraire")
+	private List<Horaire> centreHoraire;
+	
 }

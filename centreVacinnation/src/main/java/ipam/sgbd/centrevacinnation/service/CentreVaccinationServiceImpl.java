@@ -31,5 +31,40 @@ public class CentreVaccinationServiceImpl implements CentreVaccinationService {
 	public void deleteCentreById(Long idCentre) {
 		centreVaccinationRepo.deleteById(idCentre);
 	}
-
+	
+	// Creer un nouveau Centre 
+	public CentreVaccination createCentre(CentreVaccination centre) {
+		try {
+			return centreVaccinationRepo.save(centre);
+		}catch(Exception e) {
+			return null;
+		}
+	}
+	
+	// Mettre à jour le centre Vaccination
+	public CentreVaccination updateCentre(CentreVaccination centre,Long idCentre) {
+		CentreVaccination centreUpdated = centreVaccinationRepo.findById(idCentre).get();
+		centreUpdated.setNom(centre.getNom());
+		centreUpdated.setEmail(centre.getEmail());
+		centreUpdated.setAdresse(centre.getAdresse());
+		return centreVaccinationRepo.save(centre);
+	}
+	
+	// Changer l'id Siege.
+	public void changeCentreSiegeId(long idSiege, long idCentre) {
+		centreVaccinationRepo.changeCentreSiegeId(idSiege, idCentre);
+	};
+	
+	// Pas dans controller
+	// Changer l'id Patient.
+	public void changeCentrePatientId(long idPatient, long idCentre) {
+		centreVaccinationRepo.changeCentrePatientId(idPatient, idCentre);
+	};
+	
+	// Pas dans controller
+	// Changer l'id Reservation.
+	public void changeCentreReservationId(long idReservation, long idCentre) {
+		centreVaccinationRepo.changeCentreReservationId(idReservation, idCentre);
+	}
+	
 }

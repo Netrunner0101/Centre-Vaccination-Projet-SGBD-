@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,25 +22,25 @@ public class SiegeCentreController {
 	@Autowired
 	SiegeCentreServiceImpl siegeCentreServ;
 	
-	//Recherche le siege
+	// 1 Recherche le siege
 	@GetMapping("/siege/info")
 	public Iterable<SiegeCentre> info() {
 		return siegeCentreServ.infoSiege();
 	}
 	
-	//rechercher tous les patients
+	// 2 rechercher tous les patients
 	@GetMapping("/siege/patients")
 	public List<Patient> AllPatient(){
 		return siegeCentreServ.allPatients();
 	}
 	
-	//rechercher tous les centres
+	// 3 rechercher tous les centres
 	@GetMapping("/siege/centres")
 	public List<CentreVaccination> AllCentre(){
 		return siegeCentreServ.allCentres();
 	}
 	
-	//ajouter un patient au centre
+	// 4 ajouter un patient au centre
 	@PostMapping("/siege/addpatient")
 	public Patient addPatient(@RequestBody Patient patient) {
 		try {
@@ -50,27 +51,21 @@ public class SiegeCentreController {
 		}
 	}
 	
-	// ajouter un centre 
-	@PostMapping("/siege/addcentre")
-	public CentreVaccination addCentre(@RequestBody CentreVaccination centre) {
-		try {
-			return siegeCentreServ.addCentre(centre);
-		}
-		catch (Exception e) {
-			return null;
-		}
+	// 5  Creer un nouveau siege
+	@PostMapping("/siege/create")
+	public SiegeCentre siegeCreation(SiegeCentre siege) {
+		return siegeCentreServ.siegeCreation(siege);
 	}
 	
-	// supprimer un patient
-	@DeleteMapping("/siege/deletepatient/{id}")
-	void deletePatient(@PathVariable Long idPatient) {
-		siegeCentreServ.deletePatient(idPatient);
+	// 6  Update le siege
+	@PatchMapping("/siege/update/{id}")
+	public SiegeCentre siegeCreation(@RequestBody SiegeCentre siege, @PathVariable("id") long idSiege) {
+		return siegeCentreServ.siegeUpdate(siege, idSiege);
 	}
 	
-	//supprimer un centre 
-	@DeleteMapping("/siege/deletecentre/{id}")
-	void deleteCentre(@PathVariable Long idCentre) {
-		siegeCentreServ.deleteCentre(idCentre);
+	// 7 Supprimer un siege
+	@DeleteMapping("/siege/delete/{id}")
+	public void deleteSiege(@PathVariable("id") long idSiege) {
+		siegeCentreServ.deleteSiege(idSiege);
 	}
-	
 }

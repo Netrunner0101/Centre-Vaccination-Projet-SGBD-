@@ -28,6 +28,12 @@ public class SiegeCentre {
 	@Column(name="idSiege")
 	private Long idSiege ;
 	
+	@Column(name="nom")
+	private String nom ;
+	
+	@Column(name="adresse")
+	private String adresse ;
+	
 	//Relation one to many avec Patient(PK)
 	@OneToMany(mappedBy="siege")
 	private List<Patient> patient;
@@ -35,10 +41,4 @@ public class SiegeCentre {
 	//Relation one to many avec CentreVaccination(PK)
 	@OneToMany(mappedBy="siegeCentre")
 	private List<CentreVaccination> centreVaccination;
-	
-	@Column(name="nom")
-	private String nom ;
-	
-	@Column(name="adresse")
-	private String adresse ;
 }

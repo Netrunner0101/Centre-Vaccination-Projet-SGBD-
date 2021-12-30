@@ -25,7 +25,6 @@ public class Vaccin {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idVaccin")
 	private long idVaccin;
 	
 	@Column(name="nom")

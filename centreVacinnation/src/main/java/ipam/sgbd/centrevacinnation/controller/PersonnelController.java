@@ -6,8 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class PersonnelController {
 	//rechercher TOUTES personnel
 	@GetMapping("/personnels")
 	public List<Personnel> allPersonnels(){
-		return personnelServ.all();
+		return (List<Personnel>) personnelServ.all();
 	}
 	
 	//rechercher un personnel par id
@@ -39,15 +40,29 @@ public class PersonnelController {
 		personnelServ.deleteByIdPersonnel(idPersonnel);
 	}
 	
-	//Modifier un personnel 
-	@PutMapping("/personnel/update/{id}")
-	public Personnel personnelUpdate(@RequestBody Personnel personnel, @PathVariable("id") Long idPersonnel){
-		Personnel UpdatePersonnel = personnelRepo.findById(idPersonnel).get();
-		UpdatePersonnel.setNom(personnel.getNom());
-		UpdatePersonnel.setPrenom(personnel.getPrenom());
-		UpdatePersonnel.setOccupation(personnel.getOccupation());
-		UpdatePersonnel.setEmail(personnel.getEmail());
-		return personnelRepo.save(UpdatePersonnel);
+	// Probleme de creation
+	
+	//Creer un nouveau Personnel
+	@PostMapping("/personnel/create")
+	public Personnel createPersonnel(@RequestBody Personnel personnel) {
+		try {
+			return personnelServ.personnelCreate(personnel);
+		}catch(Exception e) {
+			return null;
+		}
 	}
+	
+	//Modifier un personnel 
+	@PatchMapping("/personnel/update/{id}")
+	public Personnel personnelUpdate(@RequestBody Personnel personnel, @PathVariable("id") Long idPersonnel){
+		return personnelServ.personnelUpdate(personnel, idPersonnel);
+	}
+	
+	// Update le centre id 
+	@PatchMapping("personnel/{idPe}/centre/{idC}")
+	public void changePersonnelCentreId(@PathVariable("idC")long idCentre,@PathVariable("idPe") long idPersonnel) {
+		personnelServ.changePersonnelCentreId(idCentre,idPersonnel);
+	}
+	
 	
 }

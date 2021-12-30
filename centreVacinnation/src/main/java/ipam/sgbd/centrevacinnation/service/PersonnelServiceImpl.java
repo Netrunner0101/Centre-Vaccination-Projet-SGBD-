@@ -29,4 +29,23 @@ public class PersonnelServiceImpl implements PersonnelService {
 		personnelRepo.deleteById(idPersonnel);
 	}
 
+	public Personnel personnelCreate(Personnel personnel) {
+		return personnelRepo.save(personnel);
+	}
+	
+	//Modifier le personnel 
+	public Personnel personnelUpdate(Personnel personnel,long idPersonnel) {
+		Personnel UpdatePersonnel = personnelRepo.findById(idPersonnel).get();
+		UpdatePersonnel.setNom(personnel.getNom());
+		UpdatePersonnel.setPrenom(personnel.getPrenom());
+		UpdatePersonnel.setOccupation(personnel.getOccupation());
+		UpdatePersonnel.setEmail(personnel.getEmail());
+		return personnelRepo.save(UpdatePersonnel);
+	}
+	
+	// Update le centre id par personnel
+	public void changePersonnelCentreId(long idCentre, long idPersonnel) {
+		personnelRepo.changePersonnelCentreId(idCentre,idPersonnel);
+	};
+	
 }

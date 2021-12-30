@@ -1,5 +1,5 @@
 package ipam.sgbd.centrevacinnation.service;
 
-public interface SiegeCentreService {
-	
+public interface ReservationService  {
+
 }

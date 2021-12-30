@@ -6,14 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ipam.sgbd.centrevacinnation.model.Patient;
-import ipam.sgbd.centrevacinnation.model.Reservation;
 import ipam.sgbd.centrevacinnation.repository.PatientRepository;
 import ipam.sgbd.centrevacinnation.repository.ReservationRepository;
 import ipam.sgbd.centrevacinnation.service.PatientServiceImpl;
@@ -32,12 +31,6 @@ public class PatientController {
 		return (List<Patient>) patientServiceImpl.getAllPatients();
 	}
 	
-	//Voir tous les reservation de tous les patients
-	@GetMapping("/patients/reservation/")
-	public List<Reservation> getAllReservation(){
-		return patientServiceImpl.allReservation();
-	}
-	
 	//rechercher un patient avec son id
 	@GetMapping("/patient/{id}")
 	public Optional<Patient> getPatientById(@PathVariable("id")Long idPatient) {
@@ -45,13 +38,13 @@ public class PatientController {
 	}
 	
 	//supprimer un patient
-	@DeleteMapping("/patient/{id}")
+	@DeleteMapping("/patient/delete/{id}")
 	public void deletePatient(@PathVariable("id") Long idPatient) {
 		patientServiceImpl.delete(idPatient);
 	}
 	
 	//ajouter un patient
-	@PostMapping("/patient")
+	@PostMapping("/patient/create")
 	public Patient addPatient(@RequestBody Patient patient ) {
 		try {
 			return patientServiceImpl.addPatient(patient);
@@ -62,18 +55,34 @@ public class PatientController {
 	}
 	
 	// Mettre a jour un patient
-	@PutMapping("/patient/update/{id}")
-	Patient patient(@RequestBody Patient patient, @PathVariable Long idPatient) {
-		Patient UpdatePatient = patientRepo.findById(idPatient).get();
-		UpdatePatient.setNom(patient.getNom());
-		UpdatePatient.setPrenom(patient.getPrenom());
-		UpdatePatient.setAge(patient.getAge());
-		UpdatePatient.setAdresse(patient.getAdresse());
-		UpdatePatient.setDateNaissance(patient.getDateNaissance());
-		UpdatePatient.setEmail(patient.getEmail());
-		UpdatePatient.setNumeroNational(patient.getNumeroNational());
-		UpdatePatient.setSiege(patient.getSiege());
-		return patientRepo.save(UpdatePatient);
+	@PatchMapping("/patient/update/{id}")
+	Patient patient(@RequestBody Patient patient, @PathVariable long idPatient) {
+		return patientServiceImpl.updatePatient(patient, idPatient);
+	}
+	
+	// Update id Centre 
+	@PatchMapping("/patient/{idP}/changeCentre/{idC}")
+	public void updateCentreId(@PathVariable("idC") long idCentre,@PathVariable("idP") long idPatient){
+		patientServiceImpl.changeCentreV(idCentre, idPatient);
+	}
+	
+	// Update id Reservation
+	@PatchMapping("/patient/{idP}/changeReservation/{idR}")
+	public void updateReservationId(@PathVariable("idR") long idReservation,@PathVariable("idP") long idPatient){
+		patientServiceImpl.changeReservation(idReservation, idPatient);
+	}
+	
+	// Update id Reservation
+	@PatchMapping("/patient/{idP}/changeSiege/{idS}")
+	public void updateSiegeId(@PathVariable("idS") long idSiege,@PathVariable("idP") long idPatient){
+		patientServiceImpl.changeSiege(idSiege, idPatient);
+	}
+	
+	// A vérifier
+	// Retrouver la reservation(id) du patient
+	@GetMapping("/patient/reservation/{id}")
+	public List<Object[]> getPatientReservation(@PathVariable("id")Long idPatient) {
+		return patientServiceImpl.getPatientReservation(idPatient);
 	}
 	
 }

@@ -30,21 +30,6 @@ public class Patient {
 	@Column(name="idPatient")
 	private long idPatient;
 	
-	//relation many to one SiegeCentre
-	@ManyToOne
-	@JoinColumn(name="idSiege")
-	private SiegeCentre siege;
-	
-	//relation many to one CentreVaccination
-	@ManyToOne
-	@JoinColumn(name="idCentre")
-	private CentreVaccination centreVaccination;
-	
-	//relation many to many CentreVaccination
-	//Table Intermiédaire Réservation
-	@OneToMany(mappedBy="patientReservation")
-	private List<Reservation> centreReservation;
-	
 	@Column(name="nom")
 	private String nom ;
 	
@@ -66,4 +51,19 @@ public class Patient {
 	
 	@Column(name="age")
 	private int age ;
+	
+	//relation many to one SiegeCentre
+	@ManyToOne
+	@JoinColumn(name="idSiege")
+	private SiegeCentre siege;
+	
+	//relation many to one CentreVaccination
+	@ManyToOne
+	@JoinColumn(name="idCentre")
+	private CentreVaccination centreVaccination;
+	
+	//relation many to many CentreVaccination
+	@OneToMany(mappedBy="patientReservation")
+	private List<Reservation> patientReservation;
+	
 }
