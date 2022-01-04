@@ -46,5 +46,14 @@ public class Horaire {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idCentre")
 	private CentreVaccination centreHoraire;
+
+	public Horaire(long idHoraire, Date dateHoraire, Date horaireDebut, Date horaireFin) {
+		super();
+		this.idHoraire = idHoraire;
+		this.dateHoraire = dateHoraire;
+		this.horaireDebut = horaireDebut;
+		this.horaireFin = horaireFin;
+	}
+	
 	
 }

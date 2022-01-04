@@ -47,5 +47,14 @@ public class Personnel {
 	//Relation Many to Many (Personnel) avec table intermiédaire Horaire.
 	@OneToMany(mappedBy="personnelHoraire")
 	private List<Horaire> centreHoraire;
+
+	public Personnel(long idPersonnel, String nom, String prenom, String occupation, String email) {
+		super();
+		this.idPersonnel = idPersonnel;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.occupation = occupation;
+		this.email = email;
+	}
 	
 }

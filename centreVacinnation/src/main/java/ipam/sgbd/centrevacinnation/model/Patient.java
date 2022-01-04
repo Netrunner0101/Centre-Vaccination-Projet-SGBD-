@@ -65,5 +65,19 @@ public class Patient {
 	//relation many to many CentreVaccination
 	@OneToMany(mappedBy="patientReservation")
 	private List<Reservation> patientReservation;
+
+	public Patient(long idPatient, String nom, String prenom, long numeroNational, Date dateNaissance, String adresse,
+			String email, int age) {
+		super();
+		this.idPatient = idPatient;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.numeroNational = numeroNational;
+		this.dateNaissance = dateNaissance;
+		this.adresse = adresse;
+		this.email = email;
+		this.age = age;
+	}
+	
 	
 }

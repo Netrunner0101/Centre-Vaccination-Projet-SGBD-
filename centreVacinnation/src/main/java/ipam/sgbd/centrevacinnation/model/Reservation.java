@@ -45,6 +45,14 @@ public class Reservation {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idVaccin")
-	private Vaccin vaccinReservation; 
+	private Vaccin vaccinReservation;
+
+	public Reservation(long idReservation, Date dateReservation, Date timeReservation) {
+		super();
+		this.idReservation = idReservation;
+		DateReservation = dateReservation;
+		TimeReservation = timeReservation;
+	} 
+	
 	
 }

@@ -30,7 +30,6 @@ class CentreVacinnationApplicationTests {
 	
 	@Autowired PersonnelRepository peRepo;
 	
-	
 	/*
 	// Test un POST Vaccin 
 		@Test

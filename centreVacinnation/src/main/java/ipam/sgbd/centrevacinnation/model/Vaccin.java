@@ -42,7 +42,12 @@ public class Vaccin {
 	@OneToMany
 	@JoinColumn(name="idVaccin")
 	private List<Reservation> vaccinReservation;
-	
-	
-	
+
+	public Vaccin(long idVaccin, String nom, int duree) {
+		super();
+		this.idVaccin = idVaccin;
+		this.nom = nom;
+		this.duree = duree;
+	}
+
 }

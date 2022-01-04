@@ -41,4 +41,11 @@ public class SiegeCentre {
 	//Relation one to many avec CentreVaccination(PK)
 	@OneToMany(mappedBy="siegeCentre")
 	private List<CentreVaccination> centreVaccination;
+
+	public SiegeCentre(Long idSiege, String nom, String adresse) {
+		super();
+		this.idSiege = idSiege;
+		this.nom = nom;
+		this.adresse = adresse;
+	}
 }

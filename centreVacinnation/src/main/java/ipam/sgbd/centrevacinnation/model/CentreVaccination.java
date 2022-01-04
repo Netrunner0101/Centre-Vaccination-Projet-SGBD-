@@ -29,11 +29,6 @@ public class CentreVaccination {
 	@Column(name="idCentre")
 	private Long idCentre ;
 	
-	//Relation many to one avec Siege 
-	@ManyToOne
-	@JoinColumn(name="idSiege")
-	private SiegeCentre siegeCentre;
-	
 	@Column(name="nom")
 	private String nom;
 	
@@ -42,6 +37,11 @@ public class CentreVaccination {
 	
 	@Column(name="email")
 	private String email;
+	
+	//Relation many to one avec Siege 
+	@ManyToOne
+	@JoinColumn(name="idSiege")
+	private SiegeCentre siegeCentre;
 	
 	//Relation one to many avec Patient
 	@OneToMany(mappedBy="centreVaccination")
@@ -63,5 +63,15 @@ public class CentreVaccination {
 	//Relation Many to Many (Personnel) avec table intermiédaire Horaire.
 	@OneToMany(mappedBy="centreHoraire")
 	private List<Horaire> personnelHoraire;
+
+	public CentreVaccination(Long idCentre, String nom, String adresse, String email) {
+		super();
+		this.idCentre = idCentre;
+		this.nom = nom;
+		this.adresse = adresse;
+		this.email = email;
+	}
+	
+	
 	
 }
