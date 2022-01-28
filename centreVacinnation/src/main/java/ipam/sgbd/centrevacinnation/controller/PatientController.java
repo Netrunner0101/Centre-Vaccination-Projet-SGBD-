@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -55,34 +55,34 @@ public class PatientController {
 	}
 	
 	// Mettre a jour un patient
-	@PatchMapping("/patient/update/{id}")
+	@PutMapping("/patient/update/{id}")
 	Patient patient(@RequestBody Patient patient, @PathVariable long idPatient) {
 		return patientServiceImpl.updatePatient(patient, idPatient);
 	}
 	
 	// Update id Centre 
-	@PatchMapping("/patient/{idP}/changeCentre/{idC}")
+	@PutMapping("/patient/{idP}/changeCentre/{idC}")
 	public void updateCentreId(@PathVariable("idC") long idCentre,@PathVariable("idP") long idPatient){
 		patientServiceImpl.changeCentreV(idCentre, idPatient);
 	}
 	
 	// Update id Reservation
-	@PatchMapping("/patient/{idP}/changeReservation/{idR}")
+	@PutMapping("/patient/{idP}/changeReservation/{idR}")
 	public void updateReservationId(@PathVariable("idR") long idReservation,@PathVariable("idP") long idPatient){
 		patientServiceImpl.changeReservation(idReservation, idPatient);
 	}
 	
-	// Update id Reservation
-	@PatchMapping("/patient/{idP}/changeSiege/{idS}")
+	// Update id Siege
+	@PutMapping("/patient/{idP}/changeSiege/{idS}")
 	public void updateSiegeId(@PathVariable("idS") long idSiege,@PathVariable("idP") long idPatient){
 		patientServiceImpl.changeSiege(idSiege, idPatient);
 	}
 	
-	// A vérifier
-	// Retrouver la reservation(id) du patient
-	@GetMapping("/patient/reservation/{id}")
-	public List<Object[]> getPatientReservation(@PathVariable("id")Long idPatient) {
-		return patientServiceImpl.getPatientReservation(idPatient);
-	}
-	
+//	// A vérifier
+//	// Retrouver la reservation(id) du patient
+//	@GetMapping("/patient/reservation/{id}")
+//	public List<Object[]> getPatientReservation(@PathVariable("id")Long idPatient) {
+//		return patientServiceImpl.getPatientReservation(idPatient);
+//	}
+//	
 }

@@ -48,4 +48,14 @@ public class ReservationServiceImpl implements ReservationService{
 	public void changeVaccinId(long idVaccin, long idReservation) {
 		reservationRepo.changeVaccinReservation(idVaccin, idReservation);
 	}
+	
+	//Change Patient (id)
+	public void changePatientId(long idPatient , long idReservation) {
+		reservationRepo.changeReservationPatientId(idPatient, idReservation);
+	}
+	
+	//Change Centre (id)
+	public void changeCentreId(long idCentre, long idReservation) {
+		reservationRepo.changeReservationCentreId(idCentre, idReservation);
+	}
 }

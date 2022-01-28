@@ -48,4 +48,9 @@ public class SiegeCentre {
 		this.nom = nom;
 		this.adresse = adresse;
 	}
+
+	public SiegeCentre() {
+		super();
+	}
+	
 }

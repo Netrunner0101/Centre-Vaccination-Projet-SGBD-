@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,14 +39,14 @@ public class ReservationController {
 	}
 	
 	// Update une reservation
-	@PatchMapping("/reservation/update/{id}")
+	@PutMapping("/reservation/update/{id}")
 	public Reservation updateReservation(@RequestBody Reservation reservation,@PathVariable("id") long idReservation) {
 		return reservationServ.reservationUpdate(reservation, idReservation);
 	}
 	
 	//Changer vaccin  
-	@PatchMapping("/reservation/{idR}/vaccin/{idV}")
-	public void updateVaccin(long idVaccin, long idReservation) {
+	@PutMapping("/reservation/{idR}/vaccin/{idV}")
+	public void updateVaccin(@PathVariable("idV") long idVaccin,@PathVariable("idR") long idReservation) {
 		reservationServ.changeVaccinId(idVaccin, idReservation);
 	}
 	
@@ -54,6 +54,18 @@ public class ReservationController {
 	@DeleteMapping("/reservation/delete/{id}")
 	public void deleteReservation(@PathVariable("id") long idReservation){
 		reservationServ.deleteReservation(idReservation);
+	}
+	
+	//Changer Patient Id 
+	@PutMapping("/reservation/{idR}/patient/{idP}")
+	public void updatePatientId(@PathVariable("idP") long idPatient,@PathVariable("idR") long idReservation) {
+		reservationServ.changePatientId(idPatient, idReservation);
+	}
+		
+	//Changer centre Id 
+	@PutMapping("/reservation/{idR}/centre/{idC}")
+	public void updateCentreId(@PathVariable("idC") long idCentre ,@PathVariable("idR") long idReservation) {
+		reservationServ.changeCentreId(idCentre, idReservation);
 	}
 	
 }

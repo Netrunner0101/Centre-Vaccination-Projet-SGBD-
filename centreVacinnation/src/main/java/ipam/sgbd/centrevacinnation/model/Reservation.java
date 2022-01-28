@@ -14,6 +14,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Entity
@@ -32,6 +36,8 @@ public class Reservation {
 	
 	@Column(name="TimeReservation")
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(style = "hh:mm:ss")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="hh:mm:ss")
 	private Date TimeReservation;
 
 	// Relation many to one avec Patient et Centre Vaccination
@@ -52,6 +58,10 @@ public class Reservation {
 		this.idReservation = idReservation;
 		DateReservation = dateReservation;
 		TimeReservation = timeReservation;
+	}
+
+	public Reservation() {
+		super();
 	} 
 	
 	

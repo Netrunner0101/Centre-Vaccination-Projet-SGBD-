@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -52,9 +51,16 @@ public class HoraireController {
 	}
 	
 	// Modifier le id personnel pour un horaire 
-	@PatchMapping("/horaire/{idH}/update/personnel/{idP}")
+	@PutMapping("/horaire/{idH}/update/personnel/{idP}")
 	public void updateHorairePersonnelId(@RequestBody Horaire horaire,@PathVariable("idH") long idHoraire,@PathVariable("idP") long idPersonnel) {
 		horaireServ.updateHorairePersonnelId(idPersonnel, idHoraire);
 	}
+	
+	// Modifier le id d'un centre de vaccination pour un horaire 
+	@PutMapping("/horaire/{idH}/update/centreVaccin/{idC}")
+	public void updateHoraireCentreId(@RequestBody Horaire horaire,@PathVariable("idH") long idHoraire,@PathVariable("idC") long idCentre) {
+		horaireServ.updateHoraireCentreId(idCentre, idHoraire);
+	}
+	
 	
 }

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -58,7 +58,7 @@ public class SiegeCentreController {
 	}
 	
 	// 6  Update le siege
-	@PatchMapping("/siege/update/{id}")
+	@PutMapping("/siege/update/{id}")
 	public SiegeCentre siegeCreation(@RequestBody SiegeCentre siege, @PathVariable("id") long idSiege) {
 		return siegeCentreServ.siegeUpdate(siege, idSiege);
 	}

@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,13 +53,13 @@ public class PersonnelController {
 	}
 	
 	//Modifier un personnel 
-	@PatchMapping("/personnel/update/{id}")
+	@PutMapping("/personnel/update/{id}")
 	public Personnel personnelUpdate(@RequestBody Personnel personnel, @PathVariable("id") Long idPersonnel){
 		return personnelServ.personnelUpdate(personnel, idPersonnel);
 	}
 	
 	// Update le centre id 
-	@PatchMapping("personnel/{idPe}/centre/{idC}")
+	@PutMapping("personnel/{idPe}/centre/{idC}")
 	public void changePersonnelCentreId(@PathVariable("idC")long idCentre,@PathVariable("idPe") long idPersonnel) {
 		personnelServ.changePersonnelCentreId(idCentre,idPersonnel);
 	}

@@ -63,13 +63,12 @@ class CentreVacinnationApplicationTests {
 	}
 	*/
 	
-	/* Test pour vérifier qu'il y a bien une entrée en DB
+
 	@Test
 	void testGetAll() {
 		List<Patient> p = (List<Patient>) patientRepo.findAll();
 		assertThat(p).size().isGreaterThan(0);
 	}
-	*/
 	
 	/*
 	//Verifier que il a bien un vaccin dans la DB

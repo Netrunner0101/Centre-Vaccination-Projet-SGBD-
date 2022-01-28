@@ -71,6 +71,11 @@ public class CentreVaccination {
 		this.adresse = adresse;
 		this.email = email;
 	}
+
+	public CentreVaccination() {
+		super();
+	}
+	
 	
 	
 	

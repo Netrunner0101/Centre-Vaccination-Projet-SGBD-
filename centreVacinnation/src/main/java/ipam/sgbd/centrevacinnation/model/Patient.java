@@ -37,7 +37,7 @@ public class Patient {
 	private String prenom ;
 	
 	@Column(name="numeroNational")
-	private long numeroNational;
+	private String numeroNational;
 	
 	@Column(name="dateNaissance")
 	@Temporal(TemporalType.DATE)
@@ -49,8 +49,6 @@ public class Patient {
 	@Column(name="email")
 	private String email ;
 	
-	@Column(name="age")
-	private int age ;
 	
 	//relation many to one SiegeCentre
 	@ManyToOne
@@ -66,8 +64,17 @@ public class Patient {
 	@OneToMany(mappedBy="patientReservation")
 	private List<Reservation> patientReservation;
 
-	public Patient(long idPatient, String nom, String prenom, long numeroNational, Date dateNaissance, String adresse,
-			String email, int age) {
+
+
+	public Patient() {
+		super();
+	}
+
+
+
+	public Patient(long idPatient, String nom, String prenom, String numeroNational, Date dateNaissance, String adresse,
+			String email, SiegeCentre siege, CentreVaccination centreVaccination,
+			List<Reservation> patientReservation) {
 		super();
 		this.idPatient = idPatient;
 		this.nom = nom;
@@ -76,8 +83,11 @@ public class Patient {
 		this.dateNaissance = dateNaissance;
 		this.adresse = adresse;
 		this.email = email;
-		this.age = age;
+		this.siege = siege;
+		this.centreVaccination = centreVaccination;
+		this.patientReservation = patientReservation;
 	}
+
 	
 	
 }

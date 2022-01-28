@@ -50,4 +50,8 @@ public class Vaccin {
 		this.duree = duree;
 	}
 
+	public Vaccin() {
+		super();
+	}
+	
 }

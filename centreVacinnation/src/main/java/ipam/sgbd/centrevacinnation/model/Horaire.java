@@ -54,6 +54,11 @@ public class Horaire {
 		this.horaireDebut = horaireDebut;
 		this.horaireFin = horaireFin;
 	}
+
+	public Horaire() {
+		super();
+	}
+	
 	
 	
 }

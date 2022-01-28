@@ -56,5 +56,10 @@ public class Personnel {
 		this.occupation = occupation;
 		this.email = email;
 	}
+
+	public Personnel() {
+		super();
+	}
+	
 	
 }

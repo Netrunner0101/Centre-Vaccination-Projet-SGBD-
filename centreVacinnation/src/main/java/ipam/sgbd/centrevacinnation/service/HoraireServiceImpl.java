@@ -48,4 +48,9 @@ public class HoraireServiceImpl implements HoraireService {
 		horaireRepo.updateHorairePersonnelId(idPersonnel, idHoraire);
 	}
 	
+	//Modifier l'id du centre
+	public void updateHoraireCentreId(long idCentre, long idHoraire) {
+		horaireRepo.updateHoraireCentreId(idCentre, idHoraire);
+	}
+	
 }

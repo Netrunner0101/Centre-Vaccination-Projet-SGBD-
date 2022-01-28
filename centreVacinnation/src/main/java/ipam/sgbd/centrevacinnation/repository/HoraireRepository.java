@@ -17,4 +17,9 @@ public interface HoraireRepository extends CrudRepository<Horaire,Long> {
 	@Query(value="UPDATE horaire SET idPersonnel =?1 WHERE idHoraire = ?2",nativeQuery=true)
 	void updateHorairePersonnelId(long idPersonnel, long idHoraire);
 	
+	// Changer l'id du centre de vaccination
+	@Modifying(clearAutomatically = true)
+	@Query(value="UPDATE horaire SET idCentre =?1 WHERE idHoraire = ?2",nativeQuery=true)
+	void updateHoraireCentreId(long idCentre, long idHoraire);
+	
 }

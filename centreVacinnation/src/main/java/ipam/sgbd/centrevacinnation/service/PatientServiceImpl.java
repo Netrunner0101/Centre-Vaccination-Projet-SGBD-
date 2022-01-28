@@ -44,7 +44,6 @@ public class PatientServiceImpl implements PatientService  {
 		Patient UpdatePatient = patientRepository.findById(idPatient).get();
 		UpdatePatient.setNom(patient.getNom());
 		UpdatePatient.setPrenom(patient.getPrenom());
-		UpdatePatient.setAge(patient.getAge());
 		UpdatePatient.setAdresse(patient.getAdresse());
 		UpdatePatient.setDateNaissance(patient.getDateNaissance());
 		UpdatePatient.setEmail(patient.getEmail());
@@ -67,10 +66,10 @@ public class PatientServiceImpl implements PatientService  {
 		patientRepository.changePatientSiegeId(idSiege, idPatient);
 	};
 	
-	// 1er facon
-	// Retrouver la reservation(id) du patient
-	public List<Object[]> getPatientReservation(long idPatient){
-		return patientRepository.getPatientReservation(idPatient);
-	}
-	
+//	// 1er facon
+//	// Retrouver la reservation(id) du patient
+//	public List<Object[]> getPatientReservation(long idPatient){
+//		return patientRepository.getPatientReservation(idPatient);
+//	}
+//	
 }
