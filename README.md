@@ -8,4 +8,4 @@
 - DB : SQL Server.
 - Ajout du Front-end en Angular ( Prochainement ).
 
-## Projet réaliser dans le cadre du cours de Système de gestion de base de donnée
+## Projet réalisé dans le cadre du cours de Système de gestion de base de donnée
